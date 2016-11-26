@@ -1,0 +1,6 @@
+<form  #searchForm="ngForm" (ngSubmit)="onSubmit(searchForm)">
+  <div class="mdl-textfield mdl-js-textfield">
+    <input class="mdl-textfield__input" type="search" name="querystring" ngModel #querystring="ngModel">
+    <label class="mdl-textfield__label" for="querystring">Search for movies</label>
+  </div>
+</form>

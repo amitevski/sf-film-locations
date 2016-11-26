@@ -7,8 +7,8 @@ describe('sf-film-locations App', function() {
     page = new SfFilmLocationsPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should render page title correctly', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getParagraphText()).toEqual('SF Film Locations');
   });
 });
