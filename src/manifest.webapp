@@ -1,0 +1,17 @@
+{
+  "name": "SF Film Locations",
+  "short_name": "SF Film Locations",
+  "icons": [
+        {
+            "src": "/assets/android-chrome-96x96.png",
+            "sizes": "96x96",
+            "type": "image/png",
+            "density": 2
+        }
+  ],
+  "theme_color": "#000000",
+  "background_color": "#e0e0e0",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "orientation": "portrait"
+}
