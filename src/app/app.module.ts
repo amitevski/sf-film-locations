@@ -4,10 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { SearchComponent } from './search/search.component';
-import { MovieListComponent } from './movie-list/movie-list.component';
-import { MovieCardComponent } from './movie-card/movie-card.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { SearchComponent } from './components/search/search.component';
+import { MovieListComponent } from './components/movie-list/movie-list.component';
+import { MovieCardComponent } from './components/movie-card/movie-card.component';
 
 @NgModule({
   declarations: [

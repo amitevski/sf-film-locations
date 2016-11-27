@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 // import {MovieCardComponent} from '../movie-card/movie-card.component';
-import { IMovie } from '../store/movie/movie.types';
+import { IMovie } from '../../store/movie/movie.types';
 
 @Component({
   selector: 'app-movie-list',
