@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/amitevski/sf-film-locations.svg?branch=master)](https://travis-ci.org/amitevski/sf-film-locations)
+
 # SF Film Locations
 
 ## Overview
