@@ -1,0 +1,23 @@
+<div class="sf-card-square mdl-card mdl-shadow--2dp">
+  <div class="mdl-card__title mdl-card--expand" 
+  [ngStyle]="{'background': 'url('+movie.imdb.Poster+') no-repeat #E6BE8A'}">
+    <h3 class="mdl-card__title-text">{{movie.title}}</h3>
+  </div>
+  <div class="mdl-card__supporting-text">
+    <ul>
+      <li>
+        <i class="material-icons">event</i>
+        <span class="">{{movie.release_year}}</span>
+      </li>
+      <li>
+        <i class="material-icons">location_on</i>
+        {{locationCount()}} film locations
+      </li>
+    </ul>
+  </div>
+  <div class="mdl-card__actions mdl-card--border">
+    <a class="mdl-button mdl-button--colored ">
+      Details
+    </a>
+  </div>
+</div>

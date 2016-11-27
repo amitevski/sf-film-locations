@@ -4,7 +4,9 @@ import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SearchComponent } from './search/search.component';
-import {FormsModule} from '@angular/forms';
+import { MovieListComponent } from './movie-list/movie-list.component';
+import { MovieCardComponent } from './movie-card/movie-card.component';
+import { FormsModule } from '@angular/forms';
 
 describe('AppComponent', () => {
   beforeEach(() => {
@@ -12,6 +14,8 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         SearchComponent,
+        MovieListComponent,
+        MovieCardComponent,
         NavbarComponent
       ],
       imports: [FormsModule]
