@@ -14,7 +14,7 @@ export class SearchComponent implements OnInit {
   }
 
   onSubmit(searchForm: NgForm) {
-    //TODO: submit as redux action
+    // TODO: submit as redux action
     console.log(searchForm.value);
   }
 
