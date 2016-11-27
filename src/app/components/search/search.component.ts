@@ -1,21 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy
+} from '@angular/core';
+
+import { SearchActions } from '../../actions';
+
 import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.sass']
+  styleUrls: ['./search.component.sass'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  constructor(private actions: SearchActions) { }
 
   ngOnInit() {
   }
 
   onSubmit(searchForm: NgForm) {
-    // TODO: submit as redux action
-    console.log(searchForm.value);
+    this.actions.search(searchForm.value.querystring);
   }
 
 }
