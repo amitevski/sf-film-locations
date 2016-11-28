@@ -19,6 +19,9 @@ describe('MovieCardComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(MovieCardComponent);
     component = fixture.componentInstance;
+  });
+
+  it('should create', () => {
     component.movie = {
       'actor_1': 'Siddarth',
       'actor_2': 'Nithya Menon',
@@ -46,9 +49,32 @@ describe('MovieCardComponent', () => {
       }
     };
     fixture.detectChanges();
+    expect(component).toBeTruthy();
   });
 
-  it('should create', () => {
+  it('should handle missing imdb entry', () => {
+    component.movie = {
+      'actor_1': 'Siddarth',
+      'actor_2': 'Nithya Menon',
+      'actor_3': 'Priya Anand',
+      'director': 'Jayendra',
+      'locations': [
+        'Epic Roasthouse (399 Embarcadero)',
+        'Mason & California Streets (Nob Hill)',
+        'Justin Herman Plaza',
+        '200 block Market Street',
+        'City Hall',
+        'Polk & Larkin Streets',
+        'Randall Museum',
+        '555 Market St.'
+      ],
+      'production_company': 'SPI Cinemas',
+      'release_year': '2011',
+      'title': '180',
+      'writer': 'Umarji Anuradha, Jayendra, Aarthi Sriram, & Suba '
+    };
+    fixture.detectChanges();
     expect(component).toBeTruthy();
+    expect(component.poster()).toBe(component.DEFAULT_IMG);
   });
 });

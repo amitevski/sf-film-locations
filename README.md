@@ -15,8 +15,8 @@ ALPHA: App currently not functional
 
 * [Angular 2](https://angular.io/) Single Page application
 * [redux](http://redux.js.org/) for improved Data Flow and state management
-* [Firebase](https://firebase.google.com/) as Database so the app can be serverless
-* [node.js](https://nodejs.org) for preparing the data
+* [express.js](http://expressjs.com/) backend service for API
+* [node.js](https://nodejs.org) for preparing the data and Backend Service
 * [Socrata API](https://data.sfgov.org/Culture-and-Recreation/Film-Locations-in-San-Francisco/yitu-d5am/data) film locations are fetched from this API
 * [OMDb API](https://www.omdbapi.com) additional information on the films
 * [Google Maps/Places API](https://developers.google.com/maps/documentation/javascript/places-autocomplete) for geocoding location data into the films
@@ -44,21 +44,13 @@ this will produce the file `locations.json`
 NOTE: Google has a limit of 2500 requests. So this step might fail.
 See solution below in improvements section.
 
-### preparing data for firebase
-
-As firebase can't handle object keys with spaces or special chars they are hashed with md5.
-
-```bash
-node tools/prepare-data/prepare-for-firebase.js
-```
-
-The resulting json files can then be uploaded with the firebase web ui.
 
 ### improvements
 The above commands should be automated and only update new films.
 Currently it fetches all the data all the time. This would also solve the google maps request limit.
 
-## tbd: running the app
+## running the app
+Run `npm run prod` for a prod server. Navigate to `http://localhost:3000/`.
 
 
 # Development and build process
@@ -66,7 +58,7 @@ Currently it fetches all the data all the time. This would also solve the google
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.21.
 
 ## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm start` for a dev server. Navigate to `http://localhost:3000/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
