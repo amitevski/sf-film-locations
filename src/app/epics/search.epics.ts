@@ -3,7 +3,6 @@ import { Http, URLSearchParams } from '@angular/http';
 import { IPayloadAction, SearchActions } from '../actions';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
-// import 'rxjs/add/observable/ofType';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/catch';

@@ -3,10 +3,12 @@ import {
   OnInit,
   ChangeDetectionStrategy
 } from '@angular/core';
+import 'rxjs/add/operator/debounceTime';
+
 
 import { SearchActions } from '../../actions';
 
-import { NgForm } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-search',
@@ -16,13 +18,36 @@ import { NgForm } from '@angular/forms';
 })
 export class SearchComponent implements OnInit {
 
+  searchForm = new FormGroup({
+    querystring: new FormControl()
+  });
+
   constructor(private actions: SearchActions) { }
 
   ngOnInit() {
+    this.instantSearchListener();
   }
 
-  onSubmit(searchForm: NgForm) {
+  /**
+   * dispatch search action if user submits form
+   * via pressing enter 
+   */
+  onSubmit(searchForm) {
     this.actions.search(searchForm.value.querystring);
+  }
+
+  /**
+   * listen for changes in searchForm
+   * debounce while user is typing
+   * and dispatch search action with querystring
+   */
+  private instantSearchListener() {
+    this.searchForm.valueChanges
+      .filter(form => form.querystring.length > 2)
+      .debounceTime(400)
+      .distinctUntilChanged()
+      .map(form => this.actions.search(form.querystring))
+      .subscribe();
   }
 
 }
