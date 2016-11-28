@@ -1,12 +1,31 @@
 /* tslint:disable:no-unused-variable */
 import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { DebugElement, Component } from '@angular/core';
 
 import { MovieListComponent } from './movie-list.component';
 import { MovieCardComponent } from '../movie-card/movie-card.component';
 import { SearchActions } from '../../actions';
 import { NgRedux } from 'ng2-redux';
+import { RouterTestingModule } from '@angular/router/testing';
+import { RouterModule, provideRoutes, Routes } from '@angular/router';
+
+@Component({
+  selector: 'app-dummy-home',
+  template: '<div></div>'
+})
+export class DummyhomeComponent { }
+
+@Component({
+  selector: 'app-dummy-detail',
+  template: '<div></div>'
+})
+export class DummydetailComponent { }
+
+const routes = [
+  { path: 'films/:slug', component: DummydetailComponent },
+  { path: '', component: DummyhomeComponent }
+];
 
 class MockRedux extends NgRedux<any> {
 
@@ -37,6 +56,10 @@ describe('MovieListComponent', () => {
       declarations: [
         MovieCardComponent,
         MovieListComponent
+      ],
+      imports: [
+        RouterTestingModule,
+        RouterModule
       ],
       providers: [
         { provide: SearchActions, useClass: MockSearchActions },

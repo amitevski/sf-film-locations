@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {Slug} from 'ng2-slugify';
 import { HttpModule } from '@angular/http';
 
 import {
@@ -21,7 +22,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { SearchComponent } from './components/search/search.component';
 import { MovieListComponent } from './components/movie-list/movie-list.component';
 import { MovieCardComponent } from './components/movie-card/movie-card.component';
-import { HomePageComponent } from './pages';
+import { HomePageComponent, DetailPageComponent } from './pages';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { HomePageComponent } from './pages';
     MovieListComponent,
     MovieCardComponent,
     HomePageComponent,
+    DetailPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +43,7 @@ import { HomePageComponent } from './pages';
     NgReduxModule.forRoot(),
   ],
   providers: [
+    {provide: Slug, useFactory: () => new Slug('default') }, // angular cant figure out default params
     NgReduxRouter,
     appRoutingProviders,
     SearchEpics,

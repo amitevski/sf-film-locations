@@ -18,11 +18,11 @@ import {
 } from '@angular/router';
 
 
-class MockRouter {
+export class MockRouter {
   navigate = jasmine.createSpy('navigate');
 }
 
-class LocationMock {
+export class LocationMock {
   _platformStrategy = {
     getBaseHref() {
       return '/';
@@ -30,7 +30,7 @@ class LocationMock {
   };
 }
 
-class MockRedux extends NgRedux<any> {
+export class MockRedux extends NgRedux<any> {
 
   dispatch: () => {};
 
@@ -56,8 +56,8 @@ describe('AppComponent', () => {
       providers: [
         { provide: NgRedux, useClass: MockRedux },
         { provide: Router, useClass: MockRouter },
-        NgReduxRouter,
         { provide: Location, useClass: LocationMock },
+        NgReduxRouter,
         LocationStrategy,
         SearchEpics
       ]

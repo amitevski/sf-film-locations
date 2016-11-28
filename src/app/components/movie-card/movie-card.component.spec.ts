@@ -1,9 +1,30 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { DebugElement, Component } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
+import { RouterModule, provideRoutes } from '@angular/router';
+import { Slug } from 'ng2-slugify';
 
 import { MovieCardComponent } from './movie-card.component';
+
+@Component({
+  selector: 'app-dummy-home',
+  template: '<div></div>'
+})
+export class DummyhomeComponent { }
+
+@Component({
+  selector: 'app-dummy-detail',
+  template: '<div></div>'
+})
+export class DummydetailComponent { }
+
+const routes = [
+  { path: 'films/:slug', component: DummydetailComponent },
+  { path: '', component: DummyhomeComponent }
+];
+
 
 describe('MovieCardComponent', () => {
   let component: MovieCardComponent;
@@ -11,9 +32,17 @@ describe('MovieCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MovieCardComponent ]
+      declarations: [MovieCardComponent, DummydetailComponent, DummyhomeComponent],
+      imports: [
+        RouterTestingModule,
+        RouterModule
+      ],
+      providers: [
+        { provide: Slug, useFactory: () => new Slug('default') },
+        provideRoutes(routes),
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

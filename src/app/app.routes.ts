@@ -1,8 +1,14 @@
 import { Routes } from '@angular/router';
 
-import { HomePageComponent } from './pages';
+import { HomePageComponent, DetailPageComponent } from './pages';
 
-export const SF_APP_ROUTES: Routes = [{
-  path: '',
-  component: HomePageComponent
-}];
+export const SF_APP_ROUTES: Routes = [
+  {
+    path: '',
+    component: HomePageComponent
+  },
+  {
+    path: 'films/:slug',
+    component: DetailPageComponent
+  }
+];
