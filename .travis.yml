@@ -30,3 +30,4 @@ install:
 script:
   - ng lint
   - ng test --single-run
+  - npm run test:server

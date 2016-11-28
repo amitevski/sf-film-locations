@@ -9,6 +9,12 @@ router.get('/films/search', function(req, res) {
   res.json({ results });  
 });
 
+router.get('/films/:slug', (req, res) => {
+  let film = db.filmDetailsFor(req.params.slug);
+  let locations = db.locationsBy(film.locations || []);
+  res.json({film, locations});
+});
+
 router.get('/films/head', function(req, res) {
   let results = db.head(req.query.size);
   res.json({ results });  

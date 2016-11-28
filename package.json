@@ -8,9 +8,10 @@
     "prod": "concurrently \"node server.js\" \"ng build -prod\"",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
+    "test:server": "cd api && ../node_modules/.bin/jasmine *.spec.js",
     "pree2e": "webdriver-manager update",
     "e2e": "protractor",
-    "integration-test": "concurrently --kill-others \"npm run start\" \"npm run e2e --single-run\""
+    "test:integration": "concurrently --kill-others \"npm run start\" \"npm run e2e --single-run\""
   },
   "private": true,
   "dependencies": {
@@ -30,6 +31,7 @@
     "material-design-lite": "^1.2.1",
     "ng2-redux": "^4.1.0",
     "ng2-redux-router": "^2.0.0",
+    "ng2-slugify": "^0.1.0",
     "redux": "^3.6.0",
     "redux-observable": "^0.12.2",
     "reset-css": "^2.2.0",
