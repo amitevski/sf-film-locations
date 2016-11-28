@@ -4,7 +4,7 @@ import { NgReduxRouter } from 'ng2-redux-router';
 import { createEpicMiddleware } from 'redux-observable';
 
 import { IAppState, rootReducer } from './store';
-import { SearchEpics } from './epics/search.epics';
+import { SearchEpics, DetailEpics } from './epics';
 import { middleware, enhancers } from './store';
 
 @Component({
@@ -17,9 +17,11 @@ export class AppComponent {
   constructor(
     private ngRedux: NgRedux<IAppState>,
     private ngReduxRouter: NgReduxRouter,
-    private epics: SearchEpics) {
+    private detailEpics: DetailEpics,
+    private searchEpics: SearchEpics) {
 
-    middleware.push(createEpicMiddleware(this.epics.search));
+    middleware.push(createEpicMiddleware(this.searchEpics.search));
+    middleware.push(createEpicMiddleware(this.detailEpics.fetch));
 
     ngRedux.configureStore(
       rootReducer,

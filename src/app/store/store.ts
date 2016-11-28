@@ -1,16 +1,16 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'ng2-redux-router';
-// import * as movie from './movie';
 import * as search from './search';
+import * as movie from './movie';
 
 
 export interface IAppState {
-  // movie?: movie.IMovie;
+  details?: movie.IFilmDetails;
   search?: search.ISearch;
 };
 
 export const rootReducer = combineReducers<IAppState>({
-  // movie: movie.movieReducer,
+  details: movie.detailReducer,
   search: search.searchReducer,
   router: routerReducer,
 });

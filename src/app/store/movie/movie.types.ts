@@ -18,3 +18,20 @@ export interface IMovie {
   locations?: string[];
   imdb?: IImdb;
 };
+
+
+export interface IGmapLocation {
+  lat: number;
+  lng: number;
+}
+
+export interface IGmapGeometry {
+  location: IGmapLocation;
+}
+export interface ILocation {
+  geometry: IGmapGeometry;
+}
+export interface IFilmDetails {
+  film?: IMovie;
+  locations?: ILocation[];
+}

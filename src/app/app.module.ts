@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {Slug} from 'ng2-slugify';
 import { HttpModule } from '@angular/http';
+import { AgmCoreModule } from 'angular2-google-maps/core';
 
 import {
   NgReduxModule,
@@ -14,8 +15,8 @@ import {
 } from './app.routing';
 
 import { NgReduxRouter } from 'ng2-redux-router';
-import { SearchActions } from './actions/search.actions';
-import { SearchEpics } from './epics/search.epics';
+import { SearchActions, DetailActions } from './actions';
+import { SearchEpics, DetailEpics } from './epics';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -23,6 +24,7 @@ import { SearchComponent } from './components/search/search.component';
 import { MovieListComponent } from './components/movie-list/movie-list.component';
 import { MovieCardComponent } from './components/movie-card/movie-card.component';
 import { HomePageComponent, DetailPageComponent } from './pages';
+import { LocationMapComponent } from './components/location-map/location-map.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { HomePageComponent, DetailPageComponent } from './pages';
     MovieCardComponent,
     HomePageComponent,
     DetailPageComponent,
+    LocationMapComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,12 +44,17 @@ import { HomePageComponent, DetailPageComponent } from './pages';
     HttpModule,
     routing,
     NgReduxModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCv8-d2ul4jYyWSkvUESmAjB48NTNaVPyo'
+    }),
   ],
   providers: [
     {provide: Slug, useFactory: () => new Slug('default') }, // angular cant figure out default params
     NgReduxRouter,
     appRoutingProviders,
     SearchEpics,
+    DetailEpics,
+    DetailActions,
     SearchActions
   ],
   bootstrap: [AppComponent]
