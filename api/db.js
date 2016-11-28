@@ -41,7 +41,7 @@ class DummyDb {
    * @returns location object from google api
    */
   locationBy(locationName) {
-    return this.locations[locationName] || {};
+    return this.locations[locationName] || null;
   }
 
   /**
@@ -49,13 +49,11 @@ class DummyDb {
    * @returns location object[] from google api
    */
   locationsBy(locationNames) {
-    let result = {};
-    locationNames
-      .filter(x => x !== null)
-      .forEach(location => {
-        result[location] = this.locationBy(location);
-      });
-    return result;
+    // let result = {};
+    return locationNames
+      .filter(x => x !== null) // filter film.locations null values
+      .map(location => this.locationBy(location))
+      .filter(x => x !== null && x.geometry ); // filter not found
   }
 
   _loadData() {

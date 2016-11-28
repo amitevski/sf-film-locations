@@ -38,22 +38,22 @@ describe('db', () => {
         done();
       }, 300)
     });
-    it('should return {} if location is not found', (done) => {
+    it('should return null if location is not found', (done) => {
       // wait for files to load
       setTimeout(() => {
-        expect(db.locationBy('Justin Herman Plaza foo bar')).toEqual({});
+        expect(db.locationBy('Justin Herman Plaza foo bar')).toBeNull();
         done();
       }, 300)
     });
   });
 
   describe('locationsBy', () => {
-    it('should get locations by names', (done) => {
+    it('should get locations by names as array', (done) => {
       // wait for files to load
       setTimeout(() => {
         let res = db.locationsBy(['Justin Herman Plaza', 'Justin Herman Plaza foo bar']);
-        expect(res['Justin Herman Plaza foo bar']).toEqual({});
-        expect(res['Justin Herman Plaza'].id).toBe('fd0b7c230c3b254734039cb2b8de74a88570a704');
+        expect(res.length).toBe(1);
+        expect(res[0].id).toBe('fd0b7c230c3b254734039cb2b8de74a88570a704');
         done();
       }, 300)
     });
