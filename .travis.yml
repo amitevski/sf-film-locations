@@ -26,8 +26,11 @@ script:
 - ng lint
 - ng test --single-run
 - npm run test:server
+before_deploy:
+- ng build -prod
 deploy:
   provider: heroku
   api_key:
     secure: mv0oglbuk9iQKW2+nNqdIHtweNP8gBPIS3IlbolcgNNCYROLdkZ26QkPxfC4e/gOklchQTEp4AACRRbQ7b7VU4eu794wp9F9tpEpOD6tl02SOZm1JyXKYaf9PQLT2vC5QjAvALRrPHMpyh5NxaVRv2SPocOk/MDxHcYv4wDFawVRfV2BHO/O7JLybXpBc3AMAcDNZ7KtSCi2gl2CeINOYn64MBEjexEmzT9pI9lBP98zXPgf/TrVGuXZD4GXv5LeUdyNV7bFmhv61II9YpTEZUz5FCfGezUGXC6I2c7fbviy5eLd9oBJTXs7rLOQxmszVZU9afRVwGs1+rScC+UCm1/vQBusQERlbmofWgNxfpxr73O+pTcEoe0N94/d1ayZg7d8XJnIgG9PpFXW5R9xbnFRkwMM0jJGmX8Imfen07VjBzUFrCb5NaFRdLefkR3qAri/dYwByVOq7Vy3jyVlGxFQbazxCr/Owva2dFEmjKLChVYn1uRHh4Vb0J9nhPrA8Aegtg2qkTmmlbEHtsuzeBgm5VLFsXBVONYbULi2KmHSAeOTgVEIsPBQW49CWGLzfG3haJstdgeYOEa9ITXdd9l86P2AMh72aymfMQIAIzX8dXOirB7kIpU4CZ/J1AH0/7Tyqqhqq8kcdVT2YGrYUxVjy/tK66B+qhym04M/xPY=
   app: sf-film-location-search
+  skip_cleanup: true

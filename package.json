@@ -8,7 +8,8 @@
   "angular-cli": {},
   "scripts": {
     "dev": "concurrently \"node server.js\" \"ng build -w true\"",
-    "start": "ng build -prod && node server.js",
+    "prod": "ng build -prod && node server.js",
+    "start": "node server.js",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
     "test:server": "cd api && ../node_modules/.bin/jasmine *.spec.js",
