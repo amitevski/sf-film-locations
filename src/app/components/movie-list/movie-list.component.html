@@ -4,3 +4,7 @@
     </app-movie-card>
   </li>
 <ul>
+<div *ngIf="(movies$ | async)?.length == 0" class="movies-not-found">
+  <div>Could not find any movie matching the query :-(</div>
+  <div>Please try another search.</div>
+</div>

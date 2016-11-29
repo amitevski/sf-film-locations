@@ -15,7 +15,10 @@ export class DetailPageComponent implements OnInit, OnDestroy {
 
   private sub: any;
 
-  @select(['details']) details$: Observable<IFilmDetails>;
+  @select(['details', 'film']) film$: Observable<IFilmDetails>;
+  @select(['details', 'locations']) locations$: Observable<IFilmDetails>;
+  @select(['details', 'hasError']) hasError$: Observable<IFilmDetails>;
+
   constructor(private actions: DetailActions, private route: ActivatedRoute) { }
 
   ngOnInit() {

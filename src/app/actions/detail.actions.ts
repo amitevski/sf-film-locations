@@ -26,7 +26,7 @@ export class DetailActions {
 
   fetchError(err: Error) {
     this.ngRedux.dispatch({
-      type: DetailActions.FETCH_SUCCESS,
+      type: DetailActions.FETCH_ERROR,
       payload: err
     });
   };

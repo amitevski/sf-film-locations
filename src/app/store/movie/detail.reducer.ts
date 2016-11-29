@@ -15,10 +15,10 @@ export function detailReducer(
       return INITIAL_STATE;
 
     case DetailActions.FETCH_SUCCESS:
-      return Object.assign({}, state, action.payload);
+      return Object.assign({}, state, action.payload, {hasError: false});
 
     case DetailActions.FETCH_ERROR:
-      return INITIAL_STATE;
+      return Object.assign({}, state, {hasError: true});
 
     default:
       return state;

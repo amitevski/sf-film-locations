@@ -34,4 +34,5 @@ export interface ILocation {
 export interface IFilmDetails {
   film?: IMovie;
   locations?: ILocation[];
+  hasError?: boolean;
 }

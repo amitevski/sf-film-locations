@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const DummyDb = require('./db').DummyDb;
+const _ = require('lodash');
 let db = new DummyDb();
 
 router.get('/films/search', function(req, res) {
@@ -12,6 +13,7 @@ router.get('/films/search', function(req, res) {
 router.get('/films/:slug', (req, res) => {
   let film = db.filmDetailsFor(req.params.slug);
   let locations = db.locationsBy(film.locations || []);
+  if (_.isEmpty(film) && _.isEmpty(locations)) return res.status(404).send();
   res.json({film, locations});
 });
 

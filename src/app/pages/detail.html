@@ -1,47 +1,52 @@
-<section class="sf-content mdl-layout__content">
+<section class="sf-content mdl-layout__content" *ngIf="(hasError$ | async)  == false">
 
   <section class="sf-content--film-detail">
     <div class="detail-img-wrap">
-      <img src="{{(details$ |async).film?.imdb?.Poster}}" />
+      <img src="{{(film$ | async)?.imdb?.Poster}}" />
     </div>
     <div class="sf-content--film-data">
-      <h1 class="mdl-typography--display-1">{{(details$ |async).film?.title}} ({{(details$ |async).film?.release_year}})</h1>
+      <h1 class="mdl-typography--display-1">{{(film$ | async)?.title}} ({{(film$ | async)?.release_year}})</h1>
       <div>
         <span class="sf-content--row-name">Stars:</span>
         <ul class="sf-content--star-list">
-          <li *ngIf="(details$ |async).film?.actor_1">{{(details$ |async).film?.actor_1}}</li>
-          <li *ngIf="(details$ |async).film?.actor_2"> - {{(details$ |async).film?.actor_2}}</li>
-          <li *ngIf="(details$ |async).film?.actor_3"> - {{(details$ |async).film?.actor_3}}</li>
+          <li *ngIf="(film$ | async)?.actor_1">{{(film$ | async)?.actor_1}}</li>
+          <li *ngIf="(film$ | async)?.actor_2"> - {{(film$ | async)?.actor_2}}</li>
+          <li *ngIf="(film$ | async)?.actor_3"> - {{(film$ | async)?.actor_3}}</li>
         </ul>
       </div>
-      <div *ngIf="(details$ |async).film?.director">
+      <div *ngIf="(film$ | async)?.director">
         <span class="sf-content--row-name">Director:</span>
-        <span>{{(details$ |async).film?.director}}</span>
+        <span>{{(film$ | async)?.director}}</span>
       </div>
-      <div *ngIf="(details$ |async).film?.writer">
+      <div *ngIf="(film$ | async)?.writer">
         <span class="sf-content--row-name">Writer:</span>
-        <span>{{(details$ |async).film?.writer}}</span>
+        <span>{{(film$ | async)?.writer}}</span>
       </div>
-      <div *ngIf="(details$ |async).film?.imdb">
+      <div *ngIf="(film$ | async)?.imdb">
         <span class="sf-content--row-name">Imdb Rating:</span>
-        <span>{{(details$ |async).film?.imdb?.imdbRating}}</span>
-        <a href="http://www.imdb.com/title/{{(details$ |async).film?.imdb?.imdbID}}" target="_blank">see on IMDb</a>
+        <span>{{(film$ | async)?.imdb?.imdbRating}}</span>
+        <a href="http://www.imdb.com/title/{{(film$ | async)?.imdb?.imdbID}}" target="_blank">see on IMDb</a>
       </div>
-      <div *ngIf="(details$ |async).film?.imdb">
+      <div *ngIf="(film$ | async)?.locations?.length > 0">
         <span class="sf-content--row-name">Locations:</span>
         <ul class="">
-          <li class="" *ngFor="let location of (details$ |async).film?.locations; let last = last">
+          <li class="" *ngFor="let location of (film$ | async)?.locations; let last = last">
             <span *ngIf="location" class="">
               <a href="https://www.google.de/maps/search/{{location?.split(' ').join('+')}},+san+francisco,+ca/@37.757763,-122.447643,12z" target="_blank">{{ location }}</a><span *ngIf="!last"> | </span>
             </span>
           </li>
         </ul>
+        <div>*not all locations are available on the map</div> 
       </div>
-      <small>*not all locations are available on the map</small> 
+      
     </div>
   
   </section>
-  <app-location-map [locations]="(details$ |async).locations" class="">
+  <app-location-map [locations]="(locations$ | async)" class="">
   </app-location-map>
 
+</section>
+<section class="sf-error-section" *ngIf="(hasError$ |async) == true">
+  <h2>Movie Not Found :-(</h2>
+  <p>Please try another search.</p>
 </section>

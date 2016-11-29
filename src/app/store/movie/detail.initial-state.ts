@@ -6,6 +6,7 @@ export const DetailFactory = (): IFilmDetails => {
   return {
     film: null,
     locations: null,
+    hasError: false
   };
 };
 
