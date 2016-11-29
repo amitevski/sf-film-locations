@@ -7,9 +7,9 @@
     <h4>All Locations</h4>
     <ul class="demo-list-icon mdl-list">
       <li class="mdl-list__item" *ngFor="let location of (details$ |async).film?.locations">
-        <span class="mdl-list__item-primary-content">
+        <span *ngIf="location" class="mdl-list__item-primary-content">
           <i class="material-icons mdl-list__item-icon">location_on</i>
-          <a href="https://www.google.de/maps/search/{{location.split(' ').join('+')}},+san+francisco,+ca/@37.757763,-122.447643,12z" target="_blank">{{ location }}</a>
+          <a href="https://www.google.de/maps/search/{{location?.split(' ').join('+')}},+san+francisco,+ca/@37.757763,-122.447643,12z" target="_blank">{{ location }}</a>
         </span>
       </li>
     </ul>
