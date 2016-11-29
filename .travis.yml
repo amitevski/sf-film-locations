@@ -2,32 +2,32 @@ language: node_js
 sudo: required
 dist: trusty
 node_js:
-  - '6'
-
+- '6'
 branches:
   only:
-    - master
-
+  - master
 cache:
   directories:
-    - node_modules
+  - node_modules
 env:
   global:
-    - alias ng=./node_modules/.bin/ng
-
+  - alias ng=./node_modules/.bin/ng
 before_install:
-   - export CHROME_BIN=/usr/bin/google-chrome
-   - export DISPLAY=:99.0
-   - sh -e /etc/init.d/xvfb start
-   - sudo apt-get update
-   - sudo apt-get install -y libappindicator1 fonts-liberation
-   - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-   - sudo dpkg -i google-chrome*.deb
-
+- export CHROME_BIN=/usr/bin/google-chrome
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- sudo apt-get update
+- sudo apt-get install -y libappindicator1 fonts-liberation
+- wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+- sudo dpkg -i google-chrome*.deb
 install:
-  - npm install
-
+- npm install
 script:
-  - ng lint
-  - ng test --single-run
-  - npm run test:server
+- ng lint
+- ng test --single-run
+- npm run test:server
+deploy:
+  provider: heroku
+  api_key:
+    secure: mv0oglbuk9iQKW2+nNqdIHtweNP8gBPIS3IlbolcgNNCYROLdkZ26QkPxfC4e/gOklchQTEp4AACRRbQ7b7VU4eu794wp9F9tpEpOD6tl02SOZm1JyXKYaf9PQLT2vC5QjAvALRrPHMpyh5NxaVRv2SPocOk/MDxHcYv4wDFawVRfV2BHO/O7JLybXpBc3AMAcDNZ7KtSCi2gl2CeINOYn64MBEjexEmzT9pI9lBP98zXPgf/TrVGuXZD4GXv5LeUdyNV7bFmhv61II9YpTEZUz5FCfGezUGXC6I2c7fbviy5eLd9oBJTXs7rLOQxmszVZU9afRVwGs1+rScC+UCm1/vQBusQERlbmofWgNxfpxr73O+pTcEoe0N94/d1ayZg7d8XJnIgG9PpFXW5R9xbnFRkwMM0jJGmX8Imfen07VjBzUFrCb5NaFRdLefkR3qAri/dYwByVOq7Vy3jyVlGxFQbazxCr/Owva2dFEmjKLChVYn1uRHh4Vb0J9nhPrA8Aegtg2qkTmmlbEHtsuzeBgm5VLFsXBVONYbULi2KmHSAeOTgVEIsPBQW49CWGLzfG3haJstdgeYOEa9ITXdd9l86P2AMh72aymfMQIAIzX8dXOirB7kIpU4CZ/J1AH0/7Tyqqhqq8kcdVT2YGrYUxVjy/tK66B+qhym04M/xPY=
+  app: sf-film-location-search

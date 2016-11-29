@@ -2,6 +2,9 @@
   "name": "sf-film-locations",
   "version": "0.0.0",
   "license": "MIT",
+  "engines": {
+    "node": "6.9.1"
+  },
   "angular-cli": {},
   "scripts": {
     "start": "concurrently \"node server.js\" \"ng build -w true\"",
