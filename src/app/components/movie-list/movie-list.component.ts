@@ -10,6 +10,8 @@ import { Observable } from 'rxjs/Observable';
 })
 export class MovieListComponent implements OnInit {
   @select(['search', 'results']) movies$: Observable<IMovie[]>;
+  @select(['search', 'querystring']) querystring$: Observable<IMovie[]>;
+  @select(['search', 'isSearching']) isSearching$: Observable<IMovie[]>;
 
   constructor() {}
 

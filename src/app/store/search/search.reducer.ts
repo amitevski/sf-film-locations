@@ -13,7 +13,8 @@ export function searchReducer(
   switch (action.type) {
     case SearchActions.SEARCH:
       return Object.assign({}, state, {
-        isSearching: true
+        isSearching: true,
+        querystring: action.payload
       });
 
     case SearchActions.SEARCH_SUCCESS:

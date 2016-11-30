@@ -19,6 +19,15 @@ describe('counter reducer', () => {
     expect(nextState.results).toEqual([]);
   });
 
+  it('should save querystring state for SEARCH event', () => {
+    expect(initState.isSearching).toEqual(false);
+    const nextState = searchReducer(
+      initState,
+      { type: SearchActions.SEARCH, payload: 'test' });
+    expect(nextState.querystring).toEqual('test');
+    expect(nextState.results).toEqual([]);
+  });
+
   it('should set results on SEARCH_SUCCESS', () => {
     expect(initState.results).toEqual([]);
     const results = [{title: '180'}];

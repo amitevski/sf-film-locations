@@ -1,10 +1,13 @@
+<h5 class="movie-list--headline mdl-typography--headline" *ngIf="(movies$ | async)?.length > 0">
+  {{(movies$ | async)?.length}} movies for <span>{{querystring$ | async}}</span>:
+</h5>
 <ul>
   <li *ngFor="let movie of (movies$ | async)">
     <app-movie-card [movie]="movie">
     </app-movie-card>
   </li>
 <ul>
-<div *ngIf="(movies$ | async)?.length == 0" class="movies-not-found">
-  <div>Could not find any movie matching the query :-(</div>
+<div *ngIf="(movies$ | async)?.length == 0 || (hasError$ | async) == true" class="movies-not-found">
+  <div>Could not find any movie with title {{querystring$ | async}} :-(</div>
   <div>Please try another search.</div>
 </div>

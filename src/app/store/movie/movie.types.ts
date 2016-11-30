@@ -19,6 +19,21 @@ export interface IMovie {
   imdb?: IImdb;
 };
 
+export class Movie implements IMovie {
+  constructor(
+    public title: string,
+    public actor_1: string,
+    public actor_2: string,
+    public actor_3: string,
+    public director: string,
+    public distributor: string,
+    public production_company: string,
+    public release_year: string,
+    public writer: string,
+    public locations: string[],
+    ) {}
+}
+
 
 export interface IGmapLocation {
   lat: number;
