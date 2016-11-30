@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/amitevski/sf-film-locations.svg?branch=master)](https://travis-ci.org/amitevski/sf-film-locations)
-
+[![Code Climate](https://codeclimate.com/github/amitevski/sf-film-locations/badges/gpa.svg)](https://codeclimate.com/github/amitevski/sf-film-locations)
+[![Test Coverage](https://codeclimate.com/github/amitevski/sf-film-locations/badges/coverage.svg)](https://codeclimate.com/github/amitevski/sf-film-locations/coverage)
 # SF Film Locations
 
 ## Overview
