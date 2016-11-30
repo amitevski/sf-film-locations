@@ -3,13 +3,15 @@
   color: #757575
 .sf-content--film-data
   padding: 0 20px
+  @media screen and (min-width: 680px)
+    max-width: 50vw
 .sf-content--film-detail
   display: flex
   flex-flow: row wrap
   justify-content: center
   padding-bottom: 20px
   border-bottom: 1px solid #dcdcdc
-  @media screen and (min-width: 421px)
+  @media screen and (min-width: 680px)
     justify-content: flex-start
 app-location-map
   display: block
