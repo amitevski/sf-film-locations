@@ -11,6 +11,13 @@ describe('db', () => {
         done();
       }, 300)
     });
+    it('should find movies ignoring case', (done) => {
+      // wait for files to load
+      setTimeout(() => {
+        expect(db.searchFilm('Fran').length).toBe(2);
+        done();
+      }, 300)
+    });
   });
 
   describe('filmDetailsFor', () => {

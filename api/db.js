@@ -15,6 +15,7 @@ class DummyDb {
    * @returns array of film entries
    */
   searchFilm(querystring) {
+    querystring = querystring.toLowerCase();
     return this.filmsByTitleArray
       .filter(film => film.title.toLowerCase().includes(querystring));
   }
