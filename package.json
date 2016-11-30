@@ -19,6 +19,11 @@
   },
   "private": true,
   "dependencies": {
+    "compression": "^1.6.2",
+    "express": "^4.14.0",
+    "lodash": "^4.17.2"
+  },
+  "devDependencies": {
     "@angular/common": "2.2.1",
     "@angular/compiler": "2.2.1",
     "@angular/core": "2.2.1",
@@ -30,21 +35,6 @@
     "angular-cli": "1.0.0-beta.21",
     "angular2-google-maps": "^0.16.0",
     "angularfire2": "^2.0.0-beta.6",
-    "compression": "^1.6.2",
-    "core-js": "^2.4.1",
-    "express": "^4.14.0",
-    "material-design-lite": "^1.2.1",
-    "ng2-redux": "^4.1.0",
-    "ng2-redux-router": "^2.0.0",
-    "ng2-slugify": "^0.1.0",
-    "redux": "^3.6.0",
-    "redux-observable": "^0.12.2",
-    "reset-css": "^2.2.0",
-    "rxjs": "5.0.0-beta.12",
-    "ts-helpers": "^1.1.1",
-    "zone.js": "^0.6.23"
-  },
-  "devDependencies": {
     "@angular/compiler-cli": "2.2.1",
     "@types/jasmine": "2.5.38",
     "@types/node": "^6.0.42",
@@ -61,6 +51,17 @@
     "ts-node": "1.2.1",
     "tslint": "3.13.0",
     "typescript": "~2.0.3",
-    "webdriver-manager": "10.2.5"
+    "webdriver-manager": "10.2.5",
+    "redux": "^3.6.0",
+    "redux-observable": "^0.12.2",
+    "reset-css": "^2.2.0",
+    "rxjs": "5.0.0-beta.12",
+    "ts-helpers": "^1.1.1",
+    "zone.js": "^0.6.23",
+    "material-design-lite": "^1.2.1",
+    "ng2-redux": "^4.1.0",
+    "ng2-redux-router": "^2.0.0",
+    "ng2-slugify": "^0.1.0",
+    "core-js": "^2.4.1"
   }
 }
