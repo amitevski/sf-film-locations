@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/catch';
 
 
@@ -20,6 +21,7 @@ export class DetailEpics {
     return action$.filter(({ type }) => type === DetailActions.FETCH)
       .mergeMap<IPayloadAction>(({ payload }) => {
         return this.http.get(`/api/films/${payload}`)
+          .retry(2)
           .map(result => {
             let res = result.json();
             let filmDetail: IFilmDetails = {

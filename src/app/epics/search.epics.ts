@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/catch';
 
 
@@ -22,6 +23,7 @@ export class SearchEpics {
         let params = new URLSearchParams();
         params.set('querystring', payload);
         return this.http.get(`/api/films/search`, { search: params })
+          .retry(2)
           .map(result => ({
             type: SearchActions.SEARCH_SUCCESS,
             payload: result.json().results.map(Movie.create)
