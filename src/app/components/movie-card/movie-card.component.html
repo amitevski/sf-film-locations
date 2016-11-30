@@ -1,6 +1,6 @@
 <div class="sf-card-square mdl-card mdl-shadow--2dp">
   <div class="mdl-card__title mdl-card--expand" 
-  [ngStyle]="{'background': 'url('+poster()+') no-repeat #fff'}">
+  [ngStyle]="{'background': 'url('+movie.poster()+') no-repeat #fff'}">
     <h3 class="mdl-card__title-text">{{movie.title}}</h3>
   </div>
   <div class="mdl-card__supporting-text">
@@ -11,12 +11,12 @@
       </li>
       <li>
         <i class="material-icons">location_on</i>
-        {{locationCount()}} film location(s)
+        {{movie.locations.length}} film location(s)
       </li>
     </ul>
   </div>
   <div class="mdl-card__actions mdl-card--border">
-    <a class="mdl-button mdl-button--colored" [routerLink]="['/films', movieSlug() ]">
+    <a class="mdl-button mdl-button--colored" [routerLink]="['/films', movie.slug() ]">
       Details
     </a>
   </div>

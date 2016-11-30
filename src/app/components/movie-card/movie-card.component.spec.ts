@@ -5,6 +5,7 @@ import { DebugElement, Component } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { RouterModule, provideRoutes } from '@angular/router';
 import { Slug } from 'ng2-slugify';
+import {Movie, IMovie} from '../../store/movie';
 
 import { MovieCardComponent } from './movie-card.component';
 
@@ -51,7 +52,7 @@ describe('MovieCardComponent', () => {
   });
 
   it('should create', () => {
-    component.movie = {
+    component.movie = Movie.create({
       'actor_1': 'Siddarth',
       'actor_2': 'Nithya Menon',
       'actor_3': 'Priya Anand',
@@ -76,34 +77,9 @@ describe('MovieCardComponent', () => {
         'Genre': 'Drama, Romance',
         'Poster': 'http://ia.media-imdb.com/images/M/MV5BMTQ1NDExNTA5Ml5BMl5BanBnXkFtZTcwOTc3MjA2NQ@@._V1_SX300.jpg'
       }
-    };
+    });
     fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 
-  it('should handle missing imdb entry', () => {
-    component.movie = {
-      'actor_1': 'Siddarth',
-      'actor_2': 'Nithya Menon',
-      'actor_3': 'Priya Anand',
-      'director': 'Jayendra',
-      'locations': [
-        'Epic Roasthouse (399 Embarcadero)',
-        'Mason & California Streets (Nob Hill)',
-        'Justin Herman Plaza',
-        '200 block Market Street',
-        'City Hall',
-        'Polk & Larkin Streets',
-        'Randall Museum',
-        '555 Market St.'
-      ],
-      'production_company': 'SPI Cinemas',
-      'release_year': '2011',
-      'title': '180',
-      'writer': 'Umarji Anuradha, Jayendra, Aarthi Sriram, & Suba '
-    };
-    fixture.detectChanges();
-    expect(component).toBeTruthy();
-    expect(component.poster()).toBe(component.DEFAULT_IMG);
-  });
 });

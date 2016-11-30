@@ -1,3 +1,6 @@
+import { Slug } from 'ng2-slugify';
+const slug = new Slug('default');
+
 export interface IImdb {
   imdbRating: string;
   imdbID: string;
@@ -17,9 +20,28 @@ export interface IMovie {
   writer?: string;
   locations?: string[];
   imdb?: IImdb;
-};
+  poster?(): string;
+  slug?(): string;
+}
 
 export class Movie implements IMovie {
+  DEFAULT_IMG: string = `/assets/square.png`;
+
+  static create(m: IMovie): Movie {
+    return new Movie(
+      m.title,
+      m.actor_1,
+      m.actor_2,
+      m.actor_3,
+      m.director,
+      m.distributor,
+      m.production_company,
+      m.release_year,
+      m.writer,
+      m.locations,
+      m.imdb);
+  }
+
   constructor(
     public title: string,
     public actor_1: string,
@@ -31,7 +53,29 @@ export class Movie implements IMovie {
     public release_year: string,
     public writer: string,
     public locations: string[],
-    ) {}
+    public imdb?: IImdb
+  ) {
+    this.filterLocations();
+  }
+
+  poster(withFallback = true): string {
+    if (this.imdb && this.imdb.Poster && this.imdb.Poster !== 'N/A') {
+      return this.imdb.Poster;
+    }
+
+    if (withFallback) {
+      return this.DEFAULT_IMG;
+    }
+    return '';
+  }
+
+  slug() {
+    return slug.slugify(this.title);
+  }
+
+  private filterLocations() {
+    this.locations = this.locations.filter(x => x != null);
+  }
 }
 
 

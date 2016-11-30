@@ -2,7 +2,7 @@
 
   <section class="sf-content--film-detail">
     <div class="detail-img-wrap">
-      <img src="{{(film$ | async)?.imdb?.Poster}}" />
+      <img src="{{(film$ | async)?.poster(false)}}" />
     </div>
     <div class="sf-content--film-data">
       <h1 class="mdl-typography--display-1">{{(film$ | async)?.title}} ({{(film$ | async)?.release_year}})</h1>

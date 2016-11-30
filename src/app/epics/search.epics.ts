@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, URLSearchParams } from '@angular/http';
 import { IPayloadAction, SearchActions } from '../actions';
+import { Movie } from '../store/movie';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/mergeMap';
@@ -23,7 +24,7 @@ export class SearchEpics {
         return this.http.get(`/api/films/search`, { search: params })
           .map(result => ({
             type: SearchActions.SEARCH_SUCCESS,
-            payload: result.json().results
+            payload: result.json().results.map(Movie.create)
           }))
           .catch(error => {
             return Observable.of({
