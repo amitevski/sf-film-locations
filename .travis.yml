@@ -3,10 +3,6 @@ sudo: required
 dist: trusty
 node_js:
 - '6'
-addons:
-  code_climate:
-    repo_token:
-      secure: CLqSfGhlQ0gW7wEix0GeKSlweTxLKXBrQ3eU31smDMTZRWDoSfULZ9XS4RfbfGR+ox3/Iclxie54UZPFKt67CMHI3OA90yXShttT6MKk6L/XYXTsOcj62RN71bKRBUOe1S2jKZ4k+vl2nGmxxQ48VWSwh6gBbCk3MXT4SueZvQb7YX7pxfVlcHk6LevtHuxyPp+pYZen53+BFpHUORhuQhMcE9G5FArJIu5QVTDXB8zG+EHdUICNSezRH4Mj/+Q6mmDXwnYkshGp9BighHnKCLH/13tpTduvxtFpvkVEwLsFqpxkd1DUADlx06e68/43Ihn+VGQUfuFUxfYccmMIuZo06F2S8d3vYWHF/yJQm2xbhzG92KPvWPgkybyqlyypip1s6gglNIxlsL4AoDnmR7eCm4yU+MVYz726ncSQbMXi80pDfUk3eCMn2Z0Spx4ic98uH6a9r/+D6j+LSCeObrtFYrvQ8zV0JHd6wYWwZEF4J7A46wNZi7pue8D8yrxmbsR5HOp5j6GtmHQeCDw+d9nsJKSm7N90S5tpCXjVY5Nixb4KppSUWbxjjX0j+/BWK2hduHdYOYvPmM27VStnKwcrQTQkDCRcAa67iTRYJhHBE+hUBebcJibhRt/A+hCvsgHVvdYpv1mh8NGW+sNqjS/j2quYFqkogxVRNZzoRUM=
 branches:
   only:
   - master
@@ -16,6 +12,7 @@ cache:
 env:
   global:
   - alias ng=./node_modules/.bin/ng
+  - alias codeclimate-test-reporter=./node_modules/.bin/codeclimate-test-reporter
 before_install:
 - export CHROME_BIN=/usr/bin/google-chrome
 - export DISPLAY=:99.0
