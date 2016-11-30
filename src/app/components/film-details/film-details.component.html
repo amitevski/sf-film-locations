@@ -1,0 +1,42 @@
+<section class="sf-content--film-detail">
+  <div class="detail-img-wrap">
+    <img src="{{film?.poster(false)}}" />
+  </div>
+  <div class="sf-content--film-data">
+    <h1 class="mdl-typography--display-1">{{film?.title}} ({{film?.release_year}})</h1>
+    <div>
+      <span class="sf-content--row-name">Stars:</span>
+      <ul class="sf-content--star-list">
+        <li *ngIf="film?.actor_1">{{film?.actor_1}}</li>
+        <li *ngIf="film?.actor_2"> - {{film?.actor_2}}</li>
+        <li *ngIf="film?.actor_3"> - {{film?.actor_3}}</li>
+      </ul>
+    </div>
+    <div *ngIf="film?.director">
+      <span class="sf-content--row-name">Director:</span>
+      <span>{{film?.director}}</span>
+    </div>
+    <div *ngIf="film?.writer">
+      <span class="sf-content--row-name">Writer:</span>
+      <span>{{film?.writer}}</span>
+    </div>
+    <div *ngIf="film?.imdb">
+      <span class="sf-content--row-name">Imdb Rating:</span>
+      <span>{{film?.imdb?.imdbRating}}</span>
+      <a href="http://www.imdb.com/title/{{film?.imdb?.imdbID}}" target="_blank">see on IMDb</a>
+    </div>
+    <div *ngIf="film?.locations?.length > 0">
+      <span class="sf-content--row-name">Locations:</span>
+      <ul class="">
+        <li class="" *ngFor="let location of film?.locations; let last = last">
+          <span *ngIf="location" class="">
+              <a href="https://www.google.de/maps/search/{{location?.split(' ').join('+')}},+san+francisco,+ca/@37.757763,-122.447643,12z" target="_blank">{{ location }}</a><span *ngIf="!last"> | </span>
+          </span>
+        </li>
+      </ul>
+      <div>*not all locations are available on the map</div>
+    </div>
+
+  </div>
+
+</section>

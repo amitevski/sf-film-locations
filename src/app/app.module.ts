@@ -25,6 +25,7 @@ import { MovieListComponent } from './components/movie-list/movie-list.component
 import { MovieCardComponent } from './components/movie-card/movie-card.component';
 import { HomePageComponent, DetailPageComponent } from './pages';
 import { LocationMapComponent } from './components/location-map/location-map.component';
+import { FilmDetailsComponent } from './components/film-details/film-details.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { LocationMapComponent } from './components/location-map/location-map.com
     HomePageComponent,
     DetailPageComponent,
     LocationMapComponent,
+    FilmDetailsComponent,
   ],
   imports: [
     BrowserModule,
