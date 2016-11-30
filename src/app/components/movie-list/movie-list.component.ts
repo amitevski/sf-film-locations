@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { IMovie } from '../../store/movie/movie.types';
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs/Observable';
-import { SearchActions } from '../../actions';
 
 @Component({
   selector: 'app-movie-list',
@@ -12,11 +11,10 @@ import { SearchActions } from '../../actions';
 export class MovieListComponent implements OnInit {
   @select(['search', 'results']) movies$: Observable<IMovie[]>;
 
-  constructor(private actions: SearchActions) {}
+  constructor() {}
 
   ngOnInit() {
     // init first search onload
-    this.actions.search('big');
   }
 
 }
