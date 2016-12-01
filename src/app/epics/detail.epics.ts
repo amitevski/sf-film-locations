@@ -15,7 +15,7 @@ export class DetailEpics {
   constructor(private http: Http) { }
 
   /**
-   * search for movies by title
+   * fetch a single movie with google maps locations by slug
    */
   fetch = (action$: Observable<IPayloadAction>) => {
     return action$.filter(({ type }) => type === DetailActions.FETCH)

@@ -16,19 +16,5 @@ export class SearchActions {
       payload: querystring,
     });
   };
-
-  searchSuccess(results: Object) {
-    this.ngRedux.dispatch({
-      type: SearchActions.SEARCH_SUCCESS,
-      payload: results
-    });
-  };
-
-  searchError(err: Error) {
-    this.ngRedux.dispatch({
-      type: SearchActions.SEARCH_SUCCESS,
-      payload: err
-    });
-  };
 }
 

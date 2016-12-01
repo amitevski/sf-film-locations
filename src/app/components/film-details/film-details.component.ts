@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IMovie } from '../../store/movie';
 
 @Component({
@@ -6,14 +6,11 @@ import { IMovie } from '../../store/movie';
   templateUrl: './film-details.component.html',
   styleUrls: ['./film-details.component.sass']
 })
-export class FilmDetailsComponent implements OnInit {
+export class FilmDetailsComponent {
 
   @Input()
   film: IMovie;
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
 }

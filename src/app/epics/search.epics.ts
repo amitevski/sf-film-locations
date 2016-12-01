@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, URLSearchParams } from '@angular/http';
 import { IPayloadAction, SearchActions } from '../actions';
-import { Movie } from '../store/movie';
+import { Movie, IMovie } from '../store/movie';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/mergeMap';
@@ -24,10 +24,18 @@ export class SearchEpics {
         params.set('querystring', payload);
         return this.http.get(`/api/films/search`, { search: params })
           .retry(2)
-          .map(result => ({
-            type: SearchActions.SEARCH_SUCCESS,
-            payload: result.json().results.map(Movie.create)
-          }))
+          .map(result => {
+            let movies: IMovie[] = result.json().results;
+            if (movies.length === 0) {
+              return {
+                type: SearchActions.SEARCH_ERROR
+              };
+            }
+            return {
+              type: SearchActions.SEARCH_SUCCESS,
+              payload: movies.map(Movie.create)
+            };
+          })
           .catch(error => {
             return Observable.of({
               type: SearchActions.SEARCH_ERROR

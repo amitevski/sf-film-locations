@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { IMovie } from '../../store/movie/movie.types';
+import { Component, Input } from '@angular/core';
+import { IMovie } from '../../store/movie';
 
 
 @Component({
@@ -7,16 +7,11 @@ import { IMovie } from '../../store/movie/movie.types';
   templateUrl: './movie-card.component.html',
   styleUrls: ['./movie-card.component.sass'],
 })
-export class MovieCardComponent implements OnInit {
+export class MovieCardComponent {
 
   @Input()
   movie: IMovie;
 
-  DEFAULT_IMG: string = `/assets/square.png`;
-
   constructor() { }
-
-  ngOnInit() {
-  }
 
 }

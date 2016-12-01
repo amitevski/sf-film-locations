@@ -1,34 +1,40 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { DebugElement, Component } from '@angular/core';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SearchComponent } from './components/search/search.component';
-import { SearchEpics } from './epics';
 import { MovieListComponent } from './components/movie-list/movie-list.component';
 import { MovieCardComponent } from './components/movie-card/movie-card.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 import { NgRedux } from 'ng2-redux';
 import { NgReduxRouter } from 'ng2-redux-router';
 import { Location, LocationStrategy } from '@angular/common';
+import {DetailEpics, SearchEpics} from './epics';
 import {
   Routes,
   Router,
   RouterModule
 } from '@angular/router';
 
+@Component({
+  selector: 'app-dummy-home',
+  template: '<div></div>'
+})
+export class DummyhomeComponent { }
 
-export class MockRouter {
-  navigate = jasmine.createSpy('navigate');
-}
-
-export class LocationMock {
-  _platformStrategy = {
-    getBaseHref() {
-      return '/';
-    }
-  };
-}
+@Component({
+  selector: 'app-dummy-detail',
+  template: '<div></div>'
+})
+export class DummydetailComponent { }
+const routes = [
+  { path: 'films/:slug', component: DummydetailComponent },
+  { path: '', component: DummyhomeComponent }
+];
 
 export class MockRedux extends NgRedux<any> {
 
@@ -51,21 +57,21 @@ describe('AppComponent', () => {
       ],
       imports: [
         FormsModule,
-        RouterModule,
+        RouterTestingModule,
+        HttpModule,
+        ReactiveFormsModule,
       ],
       providers: [
         { provide: NgRedux, useClass: MockRedux },
-        { provide: Router, useClass: MockRouter },
-        { provide: Location, useClass: LocationMock },
         NgReduxRouter,
         LocationStrategy,
+        DetailEpics,
         SearchEpics
       ]
     });
   });
 
-  // TODO: resolve all dependencies and re-enable
-  xit('should create the app', async(() => {
+  it('should create the app', async(() => {
     let fixture = TestBed.createComponent(AppComponent);
     let app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ILocation } from '../../store/movie/movie.types';
 
 
@@ -7,7 +7,7 @@ import { ILocation } from '../../store/movie/movie.types';
   templateUrl: './location-map.component.html',
   styleUrls: ['./location-map.component.sass']
 })
-export class LocationMapComponent implements OnInit {
+export class LocationMapComponent {
 
   @Input()
   locations: ILocation[];
@@ -18,12 +18,5 @@ export class LocationMapComponent implements OnInit {
   zoom: number = 12;
 
   constructor() { }
-
-  ngOnInit() {
-  }
-
-  clickedMarker(label: string, index: number) {
-    console.log(`clicked the marker: ${label || index}`);
-  }
 
 }

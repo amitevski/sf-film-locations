@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NgRedux } from 'ng2-redux';
-import { IAppState, IFilmDetails } from '../store';
+import { IAppState } from '../store';
 
 @Injectable()
 export class DetailActions {
@@ -14,20 +14,6 @@ export class DetailActions {
     this.ngRedux.dispatch({
       type: DetailActions.FETCH,
       payload: slug,
-    });
-  };
-
-  fetchSuccess(details: IFilmDetails) {
-    this.ngRedux.dispatch({
-      type: DetailActions.FETCH_SUCCESS,
-      payload: details
-    });
-  };
-
-  fetchError(err: Error) {
-    this.ngRedux.dispatch({
-      type: DetailActions.FETCH_ERROR,
-      payload: err
     });
   };
 }

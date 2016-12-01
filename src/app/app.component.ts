@@ -6,7 +6,6 @@ import { createEpicMiddleware } from 'redux-observable';
 import { IAppState, rootReducer } from './store';
 import { SearchEpics, DetailEpics } from './epics';
 import { middleware, enhancers } from './store';
-import { SearchActions } from './actions';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +17,6 @@ export class AppComponent implements OnInit {
   constructor(
     private ngRedux: NgRedux<IAppState>,
     private ngReduxRouter: NgReduxRouter,
-    private actions: SearchActions,
     private detailEpics: DetailEpics,
     private searchEpics: SearchEpics) {
 
@@ -33,7 +31,5 @@ export class AppComponent implements OnInit {
 
     ngReduxRouter.initialize();
   }
-  ngOnInit() {
-    this.actions.search('big');
-  }
+  ngOnInit() { }
 }

@@ -14,19 +14,22 @@ export function searchReducer(
     case SearchActions.SEARCH:
       return Object.assign({}, state, {
         isSearching: true,
-        querystring: action.payload
+        querystring: action.payload,
+        hasError: false
       });
 
     case SearchActions.SEARCH_SUCCESS:
       return Object.assign({}, state, {
         results: action.payload,
-        isSearching: false
+        isSearching: false,
+        hasError: false
       });
 
     case SearchActions.SEARCH_ERROR:
       return Object.assign({}, state, {
         results: [],
-        isSearching: false
+        isSearching: false,
+        hasError: true
       });
 
     default:

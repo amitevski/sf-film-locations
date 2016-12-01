@@ -6,7 +6,8 @@ export const SearchFactory = (): ISearch => {
   return {
     results: [],
     isSearching: false,
-    querystring: ''
+    querystring: '',
+    hasError: false
   };
 };
 

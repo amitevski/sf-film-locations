@@ -3,4 +3,5 @@ export interface ISearch {
   results: IMovie[];
   querystring: String;
   isSearching: boolean;
+  hasError: boolean;
 }
