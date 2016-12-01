@@ -9,6 +9,7 @@ import { SearchActions } from '../../actions';
 import { NgRedux } from 'ng2-redux';
 import { RouterTestingModule } from '@angular/router/testing';
 import { RouterModule, provideRoutes, Routes } from '@angular/router';
+import { MdlModule } from 'angular2-mdl';
 
 @Component({
   selector: 'app-dummy-home',
@@ -59,6 +60,7 @@ describe('MovieListComponent', () => {
       ],
       imports: [
         RouterTestingModule,
+        MdlModule,
         RouterModule
       ],
       providers: [

@@ -14,6 +14,7 @@ import { NgRedux } from 'ng2-redux';
 import { NgReduxRouter } from 'ng2-redux-router';
 import { Location, LocationStrategy } from '@angular/common';
 import {DetailEpics, SearchEpics} from './epics';
+import { MdlModule } from 'angular2-mdl';
 import {
   Routes,
   Router,
@@ -59,6 +60,7 @@ describe('AppComponent', () => {
         FormsModule,
         RouterTestingModule,
         HttpModule,
+        MdlModule,
         ReactiveFormsModule,
       ],
       providers: [

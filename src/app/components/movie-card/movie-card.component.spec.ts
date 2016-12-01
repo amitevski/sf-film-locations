@@ -6,6 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { RouterModule, provideRoutes } from '@angular/router';
 import { Slug } from 'ng2-slugify';
 import {Movie, IMovie} from '../../store/movie';
+import { MdlModule } from 'angular2-mdl';
 
 import { MovieCardComponent } from './movie-card.component';
 
@@ -36,6 +37,7 @@ describe('MovieCardComponent', () => {
       declarations: [MovieCardComponent, DummydetailComponent, DummyhomeComponent],
       imports: [
         RouterTestingModule,
+        MdlModule,
         RouterModule
       ],
       providers: [

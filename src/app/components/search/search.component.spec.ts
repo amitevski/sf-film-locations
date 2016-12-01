@@ -12,6 +12,7 @@ import { DebugElement } from '@angular/core';
 import { NgRedux } from 'ng2-redux';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MdlModule } from 'angular2-mdl';
 import { SearchComponent } from './search.component';
 import { SearchActions } from '../../actions/search.actions';
 
@@ -27,7 +28,11 @@ describe('SearchComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [SearchComponent],
-      imports: [FormsModule, ReactiveFormsModule],
+      imports: [
+        FormsModule,
+        MdlModule,
+        ReactiveFormsModule
+        ],
       providers: [
         { provide: SearchActions, useClass: MockActions },
         NgRedux

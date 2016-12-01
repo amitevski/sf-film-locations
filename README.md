@@ -130,8 +130,9 @@ Currently it fetches all the data all the time. This would also solve the google
 
 ### UI
 * Add some wizard on initial pageload that explains the user what the app is about
+* Add footer with legal information
+* Add about page
 * Render the initial page on the server with angular-universal to speed up page-load time
-* use angular-material-lite instead of directly the js library to correctly destroy dom elements and event bindings. 
 
 ### Server
 Use a Database instead of storing json files.

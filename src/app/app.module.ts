@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { RavenErrorHandler } from './app.sentry';
 import * as CONFIG from './app.config';
+import { MdlModule } from 'angular2-mdl';
 
 
 import {
@@ -45,6 +46,7 @@ import { FilmDetailsComponent } from './components/film-details/film-details.com
   imports: [
     BrowserModule,
     FormsModule,
+    MdlModule,
     ReactiveFormsModule,
     HttpModule,
     routing,

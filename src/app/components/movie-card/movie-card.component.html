@@ -1,23 +1,21 @@
-<div class="sf-card-square mdl-card mdl-shadow--2dp">
-  <div class="mdl-card__title mdl-card--expand" 
-  [ngStyle]="{'background': 'url('+movie.poster()+') no-repeat #fff'}">
-    <h3 class="mdl-card__title-text">{{movie.title}}</h3>
-  </div>
-  <div class="mdl-card__supporting-text">
+<mdl-card class="sf-card-square" mdl-shadow="2">
+  <mdl-card-title mdl-card-expand [ngStyle]="{'background': 'url('+movie.poster()+') no-repeat #fff'}">
+    <h3 mdl-card-title-text>{{movie.title}}</h3>
+  </mdl-card-title>
+  <mdl-card-supporting-text>
     <ul>
       <li>
         <i class="material-icons">event</i>
         <span class="">{{movie.release_year}}</span>
       </li>
       <li>
-        <i class="material-icons">location_on</i>
-        {{movie.locations.length}} film location(s)
+        <i class="material-icons">location_on</i> {{movie.locations.length}} film location(s)
       </li>
     </ul>
-  </div>
-  <div class="mdl-card__actions mdl-card--border">
+  </mdl-card-supporting-text>
+  <mdl-card-actions mdl-card-border>
     <a class="mdl-button mdl-button--colored" [routerLink]="['/films', movie.slug() ]">
       Details
     </a>
-  </div>
-</div>
+  </mdl-card-actions>
+</mdl-card>
