@@ -133,6 +133,7 @@ Currently it fetches all the data all the time. This would also solve the google
 * Add footer with legal information
 * Add about page
 * Render the initial page on the server with angular-universal to speed up page-load time
+* fix Angular2 AOT (Ahead of time compilation) to improve page-load speed. There are some errors when building the app with `ng build -prod -aot true`
 
 ### Server
 Use a Database instead of storing json files.
