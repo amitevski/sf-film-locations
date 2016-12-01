@@ -1,9 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {Slug} from 'ng2-slugify';
+import { Slug } from 'ng2-slugify';
 import { HttpModule } from '@angular/http';
 import { AgmCoreModule } from 'angular2-google-maps/core';
+import { RavenErrorHandler } from './app.sentry';
+import * as CONFIG from './app.config';
+
 
 import {
   NgReduxModule,
@@ -47,11 +50,12 @@ import { FilmDetailsComponent } from './components/film-details/film-details.com
     routing,
     NgReduxModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCv8-d2ul4jYyWSkvUESmAjB48NTNaVPyo'
+      apiKey: CONFIG.GOOGLE_API_KEY
     }),
   ],
   providers: [
-    {provide: Slug, useFactory: () => new Slug('default') }, // angular cant figure out default params
+    { provide: Slug, useFactory: () => new Slug('default') }, // angular cant figure out default params
+    { provide: ErrorHandler, useClass: RavenErrorHandler },
     NgReduxRouter,
     appRoutingProviders,
     SearchEpics,
