@@ -7,10 +7,10 @@
 
 SF Film Locations is a small mobile-first web application where you can search for movies filmed in san francisco.
 It also displays additional information fetched from [OMDb API](https://www.omdbapi.com) like Poster, Rating...
-In the detail view it should either display a map if enough information is available or just a list of film locations with Google Maps 
-Links.
+In the detail view in addition it displays a map with locations that could be geocoded with google maps API and a list of film locations with Google Maps Links.
 
 (Try it)[https://sf-film-location-search.herokuapp.com]
+
 
 ## Technology Stack
 
@@ -23,36 +23,29 @@ Links.
 * [Google Maps/Places API](https://developers.google.com/maps/documentation/javascript/places-autocomplete) for geocoding location data into the films
 * [TravisCI](https://travis-ci.org/) for Continous Integration
 * [Heroku](https://heroku.com/) for hosting
+* [Code Climate](https://codeclimate.com) for code analysis and coverage reports
+* [Sentry](https://sentry.io) to log client and server side errors
 
 
-## Perequisites
+### Frontend
+For the frontend a combination of Angular2 and redux was chosen written in TypeScript.
+TypeScript simplifies the development by offering a nice auto completion and helps detecting errors earlier.
+Angular2 enables a good structure by dividing the app into components.
+Redux helps to keep state management simple by strictly adhering the unidirectional data flow.
+Currently the app is pretty small, but this is a good foundation if more features need to be added.
+
+### Backend
+As the main focus of this project is the Frontend part the backend is a simple but not so bad express.js app written in plain JavaScript.
+It just offers an json REST API and loads the data from json files into memory.
+This is reasonable currently as there are not many movies in the db.
+In long term a dedicated DB should be used to also simplify scaling the app.
+
+## Usage
+
+### Perequisites
 * node.js > 6
 
-## Updating the database
-
-### fetching films from socrata
-
-```bash
-SODA_TOKEN=<your socrata key> node tools/prepare-data/load-data.js
-``` 
-this will produce the file `films-by-title.json`
-
-### geocoding locations
-
-```bash
-GOOGLE_MAPS_KEY=<yourkey> node tools/prepare-data/geocode.js
-``` 
-this will produce the file `locations.json`
-
-NOTE: Google has a limit of 2500 requests. So this step might fail.
-See solution below in improvements section.
-
-
-### improvements
-The above commands should be automated and only update new films.
-Currently it fetches all the data all the time. This would also solve the google maps request limit.
-
-## running the app
+### running the app
 Run `npm start` for a prod server. Navigate to `http://localhost:3000/`.
 The project has to be built before by running `ng build`, see details below.
 You can override the default port by setting the `PORT` environment variable.
@@ -77,6 +70,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `ng test --code-coverage true` to also generate coverage files in `coverage/index.html`.
 Run `ng run test:server` to execute the unit for the expressjs server.
 
 ### Running end-to-end tests
@@ -90,7 +84,54 @@ To get more help on the `angular-cli` use `ng --help` or go check out the [Angul
 
 
 
-## Continous Deployment Pipeline
+## Continous Integration Pipeline
 
-The project is built on travis each time new code is pushed and then deployed automacally to heroku if the build is successful.
+### Travis CI
+The project is built and tested on travis each time new code is pushed
+
+### Heroku
+On every successful build the app is deployed automatically to (heroku)[https://sf-film-location-search.herokuapp.com].
 See `.travis.yml` for details.
+
+### Code Climate
+After a successful build code is analyzed and a coverage report is sent to (code climate)[https://codeclimate.com/github/amitevski/sf-film-locations].
+
+
+## Updating the database
+
+### fetching films from socrata
+
+```bash
+SODA_TOKEN=<your socrata key> node tools/prepare-data/load-data.js
+``` 
+this will produce the file `films-by-title.json`
+
+### geocoding locations
+
+```bash
+GOOGLE_MAPS_KEY=<yourkey> node tools/prepare-data/geocode.js
+``` 
+this will produce the file `locations.json`
+
+NOTE: Google has a limit of 2500 requests. So this step might fail.
+See solution below in improvements section.
+
+
+## Known issues
+
+### Code Coverage reports are not correctly submitted
+As a workaround they can be generated locally and viewed as html
+
+## Possible improvements
+
+### Data import
+The import should be automated and only update new films to be production ready.
+Currently it fetches all the data all the time. This would also solve the google maps request limit.
+
+### UI
+* Add some wizard on initial pageload that explains the user what the app is about
+* Render the initial page on the server with angular-universal to speed up page-load time
+* use angular-material-lite instead of directly the js library to correctly destroy dom elements and event bindings. 
+
+### Server
+Use a Database instead of storing json files.
