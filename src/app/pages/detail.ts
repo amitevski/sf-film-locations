@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { IMovie, ILocation } from '../store/movie/movie.types';
-import { select } from 'ng2-redux';
+import { IMovie, IAppState, ILocation } from '../store';
+import { NgRedux } from 'ng2-redux';
 import { Observable } from 'rxjs/Observable';
 import { DetailActions } from '../actions';
 import { ActivatedRoute } from '@angular/router';
@@ -15,11 +15,15 @@ export class DetailPageComponent implements OnInit, OnDestroy {
 
   private sub: any;
 
-  @select(['details', 'film']) film$: Observable<IMovie>;
-  @select(['details', 'locations']) locations$: Observable<ILocation[]>;
-  @select(['details', 'hasError']) hasError$: Observable<boolean>;
+  film$: Observable<IMovie>;
+  locations$: Observable<ILocation[]>;
+  hasError$: Observable<boolean>;
 
-  constructor(private actions: DetailActions, private route: ActivatedRoute) { }
+  constructor(private actions: DetailActions, private route: ActivatedRoute, private ngRedux: NgRedux<IAppState>) {
+    this.film$ = this.ngRedux.select(state => state.details.film);
+    this.locations$ = this.ngRedux.select(state => state.details.locations);
+    this.hasError$ = this.ngRedux.select(state => state.details.hasError);
+  }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {

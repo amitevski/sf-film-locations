@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Slug } from 'ng2-slugify';
 import { HttpModule } from '@angular/http';
@@ -7,18 +8,20 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
 import { RavenErrorHandler } from './app.sentry';
 import * as CONFIG from './app.config';
 import { MdlModule } from 'angular2-mdl';
+import { NgRedux } from 'ng2-redux';
+import { createEpicMiddleware } from 'redux-observable';
+
+import { IAppState, rootReducer } from './store';
+import { middleware, enhancers } from './store';
 
 
 import {
   NgReduxModule,
 } from 'ng2-redux';
 
-import {
-  routing,
-  appRoutingProviders
-} from './app.routing';
+import {SF_APP_ROUTES} from './app.routes';
 
-import { NgReduxRouter } from 'ng2-redux-router';
+import { NgReduxRouter, NgReduxRouterModule } from 'ng2-redux-router';
 import { SearchActions, DetailActions } from './actions';
 import { SearchEpics, DetailEpics } from './epics';
 
@@ -49,17 +52,18 @@ import { FilmDetailsComponent } from './components/film-details/film-details.com
     MdlModule,
     ReactiveFormsModule,
     HttpModule,
-    routing,
+    RouterModule.forRoot(SF_APP_ROUTES),
     NgReduxModule.forRoot(),
+    NgReduxRouterModule,
     AgmCoreModule.forRoot({
       apiKey: CONFIG.GOOGLE_API_KEY
     }),
   ],
   providers: [
-    { provide: Slug, useFactory: () => new Slug('default') }, // angular cant figure out default params
+    { provide: Slug, useFactory: slugFactory }, // angular cant figure out default params
     { provide: ErrorHandler, useClass: RavenErrorHandler },
     NgReduxRouter,
-    appRoutingProviders,
+    // appRoutingProviders,
     SearchEpics,
     DetailEpics,
     DetailActions,
@@ -67,4 +71,27 @@ import { FilmDetailsComponent } from './components/film-details/film-details.com
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private ngRedux: NgRedux<IAppState>,
+    private ngReduxRouter: NgReduxRouter,
+    private detailEpics: DetailEpics,
+    private searchEpics: SearchEpics) {
+
+    middleware.push(createEpicMiddleware(this.searchEpics.search));
+    middleware.push(createEpicMiddleware(this.detailEpics.fetch));
+
+    ngRedux.configureStore(
+      rootReducer,
+      {},
+      middleware,
+      enhancers);
+
+    ngReduxRouter.initialize();
+    }
+  
+ }
+
+export function slugFactory() {
+  return new Slug('default');
+}
+

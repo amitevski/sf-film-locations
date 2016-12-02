@@ -1,2 +1,2 @@
-export * from './home';
-export * from './detail';
+export { HomePageComponent } from './home';
+export { DetailPageComponent } from './detail';

@@ -1,13 +1,14 @@
 import { IPayloadAction } from '../../actions';
 import { SearchActions } from '../../actions/search.actions';
+import { ISearch } from './search.types';
 
 import {
-  INITIAL_STATE,
+  INITIAL_STATE
 } from './search.initial-state';
 
 
 export function searchReducer(
-  state = INITIAL_STATE,
+  state: ISearch = INITIAL_STATE,
   action: IPayloadAction) {
 
   switch (action.type) {

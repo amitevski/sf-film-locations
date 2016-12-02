@@ -1,18 +1,22 @@
 import { Component } from '@angular/core';
-import { IMovie } from '../../store/movie/movie.types';
-import { select } from 'ng2-redux';
+import { IMovie, IAppState } from '../../store';
+import { NgRedux } from 'ng2-redux';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-movie-list',
-  templateUrl: './movie-list.component.html',
-  styleUrls: ['./movie-list.component.sass']
+  templateUrl: 'movie-list.component.html',
+  styleUrls: ['movie-list.component.sass']
 })
 export class MovieListComponent {
-  @select(['search', 'results']) movies$: Observable<IMovie[]>;
-  @select(['search', 'querystring']) querystring$: Observable<IMovie[]>;
-  @select(['search', 'hasError']) hasError$: Observable<boolean>;
+  movies$: Observable<IMovie[]>;
+  querystring$: Observable<string>;
+  hasError$: Observable<boolean>;
 
-  constructor() { }
+  constructor(private ngRedux: NgRedux<IAppState>) {
+    this.movies$ = this.ngRedux.select(state => state.search.results);
+    this.querystring$ = this.ngRedux.select(state => state.search.querystring);
+    this.hasError$ = this.ngRedux.select(state => state.search.hasError);
+  }
 
 }

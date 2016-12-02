@@ -30,7 +30,7 @@ script:
 after_success:
   - codeclimate-test-reporter < coverage/coverage.lcov
 before_deploy:
-- ng build -prod
+- ng build -prod -aot true
 deploy:
   provider: heroku
   api_key:

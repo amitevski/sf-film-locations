@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import { combineReducers, Action } from 'redux';
 import { routerReducer } from 'ng2-redux-router';
 import * as search from './search';
 import * as movie from './movie';

@@ -1,6 +1,4 @@
-import {
-  IFilmDetails
-} from './movie.types';
+import { IFilmDetails } from './movie.types';
 
 export const DetailFactory = (): IFilmDetails => {
   return {

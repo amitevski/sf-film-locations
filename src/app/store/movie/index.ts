@@ -1,3 +1,3 @@
-export * from './movie.types';
-export * from './detail.reducer';
-export * from './detail.initial-state';
+export { Movie, IFilmDetails, IMovie, ILocation } from './movie.types';
+export { detailReducer } from './detail.reducer';
+export { INITIAL_STATE } from './detail.initial-state';
