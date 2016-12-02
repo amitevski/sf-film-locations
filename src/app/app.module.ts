@@ -19,7 +19,7 @@ import {
   NgReduxModule,
 } from 'ng2-redux';
 
-import {SF_APP_ROUTES} from './app.routes';
+import { SF_APP_ROUTES } from './app.routes';
 
 import { NgReduxRouter, NgReduxRouterModule } from 'ng2-redux-router';
 import { SearchActions, DetailActions } from './actions';
@@ -87,9 +87,9 @@ export class AppModule {
       enhancers);
 
     ngReduxRouter.initialize();
-    }
-  
- }
+  }
+
+}
 
 export function slugFactory() {
   return new Slug('default');
