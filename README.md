@@ -137,6 +137,7 @@ Currently it fetches all the data all the time. This would also solve the google
 * Add footer with legal information
 * Add about page
 * Render the initial page on the server with angular-universal to speed up page-load time
+* add more progressive web app features
 
 ### Server
 Use a Database instead of storing json files.
