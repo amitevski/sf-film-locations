@@ -32,7 +32,7 @@ describe('SearchComponent', () => {
         FormsModule,
         MdlModule,
         ReactiveFormsModule
-        ],
+      ],
       providers: [
         { provide: SearchActions, useClass: MockActions },
         NgRedux
@@ -85,20 +85,6 @@ describe('SearchComponent', () => {
             tick(500);
             fixture.detectChanges();
             expect(mockActions.search).toHaveBeenCalledWith(querystring);
-          })
-      ));
-
-    it('should filter strings with less than 3 chars',
-      fakeAsync(
-        inject(
-          [SearchActions],
-          (mockActions: SearchActions) => {
-            const querystring = '18';
-            mockActions.search = jasmine.createSpy('search');
-            component.searchForm.setValue({ querystring }, { emitEvent: true });
-            tick(500);
-            fixture.detectChanges();
-            expect(mockActions.search).not.toHaveBeenCalled();
           })
       ));
   });

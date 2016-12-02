@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/amitevski/sf-film-locations.svg?branch=master)](https://travis-ci.org/amitevski/sf-film-locations)
 [![Code Climate](https://codeclimate.com/github/amitevski/sf-film-locations/badges/gpa.svg)](https://codeclimate.com/github/amitevski/sf-film-locations)
-[![Test Coverage](https://codeclimate.com/github/amitevski/sf-film-locations/badges/coverage.svg)](https://codeclimate.com/github/amitevski/sf-film-locations/coverage)
+
 # SF Film Locations
 
 ## Overview
@@ -9,7 +9,7 @@ SF Film Locations is a small mobile-first web application where you can search f
 It also displays additional information fetched from [OMDb API](https://www.omdbapi.com) like Poster, Rating...
 In the detail view in addition it displays a map with locations that could be geocoded with google maps API and a list of film locations with Google Maps Links.
 
-(Try it)[https://sf-film-location-search.herokuapp.com]
+[Try it](https://sf-film-location-search.herokuapp.com)
 
 
 ## Technology Stack
@@ -31,6 +31,7 @@ In the detail view in addition it displays a map with locations that could be ge
 For the frontend a combination of Angular2 and redux was chosen written in TypeScript.
 TypeScript simplifies the development by offering a nice auto completion and helps detecting errors earlier.
 Angular2 enables a good structure by dividing the app into components.
+It also has testability built in.
 Redux helps to keep state management simple by strictly adhering the unidirectional data flow.
 Currently the app is pretty small, but this is a good foundation if more features need to be added.
 
@@ -44,6 +45,8 @@ In long term a dedicated DB should be used to also simplify scaling the app.
 
 ### Perequisites
 * node.js > 6
+
+Run `npm install` in the root folder to install the dependencies.
 
 ### running the app
 Run `npm start` for a prod server. Navigate to `http://localhost:3000/`.
@@ -90,11 +93,12 @@ To get more help on the `angular-cli` use `ng --help` or go check out the [Angul
 The project is built and tested on travis each time new code is pushed
 
 ### Heroku
-On every successful build the app is deployed automatically to (heroku)[https://sf-film-location-search.herokuapp.com].
+On every successful build the app is deployed automatically to [heroku](https://sf-film-location-search.herokuapp.com).
 See `.travis.yml` for details.
+A very optimized [AOT](https://angular.io/docs/ts/latest/cookbook/aot-compiler.html) version of the frontend is deployed to the live server.
 
 ### Code Climate
-After a successful build code is analyzed and a coverage report is sent to (code climate)[https://codeclimate.com/github/amitevski/sf-film-locations].
+After a successful build code is analyzed and a coverage report is sent to [code climate](https://codeclimate.com/github/amitevski/sf-film-locations).
 
 
 ## Updating the database

@@ -43,7 +43,6 @@ export class SearchComponent implements OnInit {
    */
   private instantSearchListener() {
     this.searchForm.valueChanges
-      .filter(form => form.querystring.length > 2)
       .debounceTime(400)
       .distinctUntilChanged()
       .map(form => this.actions.search(form.querystring))
